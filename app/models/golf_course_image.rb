@@ -1,0 +1,2 @@
+class GolfCourseImage < ApplicationRecord
+end

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course: one
+  date_time: 2024-03-15 23:23:41
+  available_slots: 1
+  price: 9.99
+
+two:
+  course: two
+  date_time: 2024-03-15 23:23:41
+  available_slots: 1
+  price: 9.99

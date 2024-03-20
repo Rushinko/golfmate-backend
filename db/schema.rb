@@ -10,18 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_25_041328) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_16_032409) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tee_time_id", null: false
+    t.integer "number_of_players"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tee_time_id"], name: "index_bookings_on_tee_time_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "holes"
+    t.integer "par"
+    t.text "description"
   end
 
   create_table "golf_course_images", force: :cascade do |t|
@@ -33,8 +42,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_041328) do
   end
 
   create_table "tee_times", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.datetime "date_time"
+    t.integer "available_slots"
+    t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_tee_times_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,4 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_041328) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "tee_times"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "tee_times", "courses"
 end

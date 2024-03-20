@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  tee_time: one
+  number_of_players: 1
+  status: MyString
+
+two:
+  user: two
+  tee_time: two
+  number_of_players: 1
+  status: MyString
